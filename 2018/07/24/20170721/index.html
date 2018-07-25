@@ -6,19 +6,25 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://wkding.github.io">
-  <title>Archives: 2017 | w.k的博客</title>
+  <title>Gitblit环境 | w.k的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="无业小游民。">
-<meta name="keywords" content="程序猿,">
-<meta property="og:type" content="website">
-<meta property="og:title" content="w.k的博客">
-<meta property="og:url" content="https://wkding.github.io/archives/2017/index.html">
+  <meta name="description" content="Gitblit服务器环境搭配自己搭建一个GIT服务器，存放代码，准备如下： *服务器一台（先用的自己的） *配置java环境，下载地址[http://www.java.com/zh_CN/] *下载gitblit 地址：[http://www.gitblit.com/]">
+<meta name="keywords" content="Git">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Gitblit环境">
+<meta property="og:url" content="https://wkding.github.io/2018/07/24/20170721/index.html">
 <meta property="og:site_name" content="w.k的博客">
-<meta property="og:description" content="无业小游民。">
+<meta property="og:description" content="Gitblit服务器环境搭配自己搭建一个GIT服务器，存放代码，准备如下： *服务器一台（先用的自己的） *配置java环境，下载地址[http://www.java.com/zh_CN/] *下载gitblit 地址：[http://www.gitblit.com/]">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="http://hexo-pic.oss-cn-hangzhou.aliyuncs.com/pic/1.png">
+<meta property="og:image" content="http://hexo-pic.oss-cn-hangzhou.aliyuncs.com/pic/2.png">
+<meta property="og:image" content="http://hexo-pic.oss-cn-hangzhou.aliyuncs.com/pic/3.png">
+<meta property="og:image" content="http://hexo-pic.oss-cn-hangzhou.aliyuncs.com/pic/4.png">
+<meta property="og:updated_time" content="2018-07-25T14:07:40.892Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="w.k的博客">
-<meta name="twitter:description" content="无业小游民。">
+<meta name="twitter:title" content="Gitblit环境">
+<meta name="twitter:description" content="Gitblit服务器环境搭配自己搭建一个GIT服务器，存放代码，准备如下： *服务器一台（先用的自己的） *配置java环境，下载地址[http://www.java.com/zh_CN/] *下载gitblit 地址：[http://www.gitblit.com/]">
+<meta name="twitter:image" content="http://hexo-pic.oss-cn-hangzhou.aliyuncs.com/pic/1.png">
   
     <link rel="alternative" href="/atom.xml" title="w.k的博客" type="application/atom+xml">
   
@@ -47,13 +53,13 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="" class="js-avatar">
+			<img src="https://hexo-img.oss-cn-shanghai.aliyuncs.com/PrivateLife/IMG_0448.JPG" class="js-avatar">
 		</a>
 		<hgroup>
 		  <h1 class="header-author"><a href="/">w.k</a></h1>
 		</hgroup>
 		
-		<p class="header-subtitle">天..蝎..男</p>
+		<p class="header-subtitle">I want i want</p>
 		
 
 		<nav class="header-menu">
@@ -61,7 +67,7 @@
 			
 				<li><a href="/">主页</a></li>
 	        
-				<li><a href="/archives">所有文章</a></li>
+				<li><a href="/archives">归档</a></li>
 	        
 			</ul>
 		</nav>
@@ -69,10 +75,6 @@
     		
     			
     			<a q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有文章</a>
-    			
-            
-    			
-    			<a q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友链</a>
     			
             
     			
@@ -86,8 +88,6 @@
 					<a class="github" target="_blank" href="https://github.com/wkding/wk.ding.github.io" title="github"><i class="icon-github"></i></a>
 		        
 					<a class="weibo" target="_blank" href="http://weibo.com/3199920862/profile?rightmod=1&wvr=6&mod=personinfo" title="weibo"><i class="icon-weibo"></i></a>
-		        
-					<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
 		        
 					<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/kevin-83-98-52/activities" title="zhihu"><i class="icon-zhihu"></i></a>
 		        
@@ -107,13 +107,13 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="" class="js-avatar">
+				<img src="https://hexo-img.oss-cn-shanghai.aliyuncs.com/PrivateLife/IMG_0448.JPG" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author js-header-author">w.k</h1>
 			</hgroup>
 			
-			<p class="header-subtitle"><i class="icon icon-quo-left"></i>天..蝎..男<i class="icon icon-quo-right"></i></p>
+			<p class="header-subtitle"><i class="icon icon-quo-left"></i>I want i want<i class="icon icon-quo-right"></i></p>
 			
 			
 			
@@ -130,8 +130,6 @@
 			        
 						<a class="weibo" target="_blank" href="http://weibo.com/3199920862/profile?rightmod=1&wvr=6&mod=personinfo" title="weibo"><i class="icon-weibo"></i></a>
 			        
-						<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
-			        
 						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/kevin-83-98-52/activities" title="zhihu"><i class="icon-zhihu"></i></a>
 			        
 				</div>
@@ -143,7 +141,7 @@
 				
 					<li style="width: 50%"><a href="/">主页</a></li>
 		        
-					<li style="width: 50%"><a href="/archives">所有文章</a></li>
+					<li style="width: 50%"><a href="/archives">归档</a></li>
 		        
 				</ul>
 			</nav>
@@ -158,49 +156,183 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-20170721" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/28/hello-world/" class="archive-article-date">
-  	<time datetime="2017-10-28T00:39:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-28</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/28/hello-world/">Hello World</a>
+    <h1 class="article-title" itemprop="name">
+      Gitblit环境
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
+        
+        <a href="/2018/07/24/20170721/" class="archive-article-date">
+  	<time datetime="2018-07-24T11:54:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Gitblit服务器环境搭配"><a href="#Gitblit服务器环境搭配" class="headerlink" title="Gitblit服务器环境搭配"></a>Gitblit服务器环境搭配</h1><p>自己搭建一个GIT服务器，存放代码，准备如下：</p>
+<p>*服务器一台（先用的自己的）</p>
+<p>*配置java环境，下载地址[<a href="http://www.java.com/zh_CN/]" target="_blank" rel="noopener">http://www.java.com/zh_CN/]</a></p>
+<p>*下载gitblit 地址：[<a href="http://www.gitblit.com/]" target="_blank" rel="noopener">http://www.gitblit.com/]</a></p>
+<a id="more"></a>
+<h2 id="java环境配置"><a href="#java环境配置" class="headerlink" title="java环境配置"></a>java环境配置</h2><p>下载软件之后，一步步双击，完成后打开cmd界面，输入java回车，如下图，表示安装成。并没有去配置环境变量，已经自动配置</p>
+<p><img src="http://hexo-pic.oss-cn-hangzhou.aliyuncs.com/pic/1.png" alt="图"></p>
+<h2 id="GitBlit配置"><a href="#GitBlit配置" class="headerlink" title="GitBlit配置"></a>GitBlit配置</h2><p>下载之后创建一个文件夹存放GitBlit解压包，另一个为GitRepository 源代码<img src="http://hexo-pic.oss-cn-hangzhou.aliyuncs.com/pic/2.png" alt="img"></p>
+<p>1.配置文件修改：data-&gt;gitblit.properties -&gt;include = defaults.properties 如果需要配置新的配置文件，可更换，否则不改动也可以</p>
+<p>2.同级目录下找到defaults.properties 文件，打开之后，修改以下内容：</p>
+<p>*git.repositoriesFolder = C:/Person/Git/GitRepository（资料库及代码存放位置）</p>
+<p>*server.httpPort = 80 设置端口号</p>
+<p>*server.storePassword = 123456 设置超级密码</p>
+<p>*server.httpBindInterface =172.16.0.246  </p>
+<p>*server.httpsBindInterface =172.16.0.246  </p>
+<p>*server.certificateAlias = 172.16.0.246 先设置为自己的ip地址，局域网内可访问</p>
+<p>3.保存后，返回上级目录，执行gitblit.cmd批处理命令，成功提示如下图，即可访问172.16.0.246</p>
+<p><img src="http://hexo-pic.oss-cn-hangzhou.aliyuncs.com/pic/3.png" alt="img"></p>
+<p>4.Gitblit设置以windows service 方式启动</p>
+<p>*在根目录下找到installService.cmd，以记事本打开,添加SET CD = C:\Person\Git\GitBit</p>
+<p>*设置StartParams=“”</p>
+<p>修改完成如下图：</p>
+<p><img src="http://hexo-pic.oss-cn-hangzhou.aliyuncs.com/pic/4.png" alt="img"></p>
+<p>至此，配置完成，但是没有服务器，需要测试下代码是否能pull。</p>
 
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Git</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/learning//" class="article-tag-list-link color4">learning</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://wkding.github.io/2018/07/24/20170721/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-  
-    </div></section>
+
   
 
-    
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Gitblit服务器环境搭配"><span class="toc-number">1.</span> <span class="toc-text">Gitblit服务器环境搭配</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#java环境配置"><span class="toc-number">1.1.</span> <span class="toc-text">java环境配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GitBlit配置"><span class="toc-number">1.2.</span> <span class="toc-text">GitBlit配置</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+  
+  
+  
+
+  
+
+  
+
+  
 
 
           </div>
@@ -223,15 +355,15 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
 		root: "/",
 		innerArchive: true,
-		showTags: false
+		showTags: true
 	}
 </script>
 
@@ -275,25 +407,17 @@ MathJax.Hub.Queue(function() {
       
       
     
-      
-      
-      
-    
     
 
     <ul style="width: 70%">
     
     
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
+      <li style="width: 50%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
       
         
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">友链</a></li>
-      
-        
-      
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
+      <li style="width: 50%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
       
         
     </ul>
@@ -312,6 +436,10 @@ MathJax.Hub.Queue(function() {
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
@@ -357,15 +485,11 @@ MathJax.Hub.Queue(function() {
     
 
     
-    	<section class="tools-section tools-section-friends" q-show="friends">
-  		
-    	</section>
-    
 
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">很惭愧&lt;br&gt;&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">生活还有远方...</div>
   	  	
     	</section>
     
