@@ -1,44 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[机器学习基础]]></title>
-    <url>%2F%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%2F</url>
-    <content type="text"><![CDATA[1.基础概念 《机器学习》:简单而言，机器学习就是把无序的数据转换成有用的信息。 1.学习形式分类 监督学习(supervised learning) 监督学习即在机械学习过程中给出对错提示，从给定带有标签的训练集中训练出目标函数，主要应用于分类和预测（classify &amp; regression）。通常的算法包含回归分析和统计分类 非监督学习(unsupervised learning) 学习没有标签的数据集，比如在分析大量语句之后，训练出一个模型将较为接近的词分为一类，而后可以根据一个新的词在句子中的用法（和其他信息）将这个词分入某一类中。其中比较微妙的地方在于，这种问题下使用聚类（Clustering）（方法）所获得的簇（Cluster）（结果），有时候是无法人为地观察出其特征的，但是在得到聚类后，可能会对数据集有新的启发2.数据相关 用来进行机器学习的一个数据集往往会被分为两个数据集——训练数据（training data）和测试数据（testing data）。 顾名思义，训练数据在机器学习的过程中使用，目的是找出一套机器学习的方法；而测试数据用于判断找出的方法是否足够有效。 2.K-近邻算法]]></content>
+    <title><![CDATA[js_juicer]]></title>
+    <url>%2Fjs-juicer%2F</url>
+    <content type="text"><![CDATA[1.简介Juicer 是一个高效、轻量的前端模版引擎，好处可以在前端页面使得视图模型与数据的分离。（可以运行在node.js ） 2.使用1.引用1).Install:：npm i juicer2).下载代码地址：Github Link项目中引用：&lt;script type=&quot;text/javascript&quot; src=&quot;juicer-min.js&quot;&gt;&lt;/script&gt;2.一般使用1.语法12345678910111213141516171819202122232425262728293031323334a.使用$&#123;&#125; 输出变量，支持自定义函数$&#123;name&#125;$&#123;name|function&#125;//自定义的函数var testFun = function(data)&#123; return &apos;&lt;a href=&quot;&apos;+data.href+&apos;&quot; alt = &quot;&apos;+data.alt+&apos;&quot;/&gt;&apos;&#125;//注册/注销自定义函数//jucer.register(&apos;function name&apos;,function)juicer.register(&apos;test_Fun&apos;,testFun)//juicer.unregister(&apos;test_Fun&apos;)var json = &#123; links: [ &#123;href: &apos;http://juicer.name&apos;, alt: &apos;Juicer&apos;&#125;, &#123;href: &apos;http://benben.cc&apos;, alt: &apos;Benben&apos;&#125;, &#123;href: &apos;http://ued.taobao.com&apos;, alt: &apos;Taobao UED&apos;&#125; ]&#125;;var tpl= [ &apos;&#123;@each links as item &#125;&apos;, &apos;$&#123;item|test_Fun&#125; &lt;br/&gt;&apos;, &apos;&#123;@/each&#125;&apos;].join(&apos;&apos;)//编译模版并根据所给数据立即渲染结果juicer(tpl,json)//先编译，返回函数，再渲染数据var compiled_tpl = juicer(tpl);var htm = compiled_tpl.render(data);//转义问题使用$$&#123;变量&#125;避免转义 1234567891011121314b.循环和判断&#123;@each list as item&#125; $&#123;item.变量&#125;&#123;@/each&#125; &#123;@each list as item,index&#125; &#123;@if index===3&#125; the index is 3, the value is $&#123;item.prop&#125; &#123;@else if index === 4&#125; the index is 4, the value is $&#123;item.prop&#125; &#123;@else&#125; the index is not 3, the value is $&#123;item.prop&#125; &#123;@/if&#125;&#123;@/each&#125; 123456c.注释&#123;# 注释类容&#125;d.辅助循环&#123;@each i in range(5, 10)&#125; $&#123;i&#125;; //输出 5;6;7;8;9;&#123;@/each&#125; 1234567891011121314151617181920212223e.子模板嵌套 &#123;@include tpl, data&#125;//Html 代码&lt;script type=&quot;text/juicer&quot; id=&quot;subTpl&quot;&gt; I&apos;m sub content, $&#123;name&#125;&lt;/script&gt;//js 代码var tpl = &apos;Hi, &#123;@include &quot;#subTpl&quot;, subData&#125;, End.&apos;; juicer(tpl, &#123; subData: &#123; name: &apos;juicer&apos; &#125;&#125;); //输出 Hi, I&apos;m sub content, juicer, End.//或者通过数据引入子模板，下述代码也将会有相同的渲染结果： var tpl = &apos;Hi, &#123;@include subTpl, subData&#125;, End.&apos;;juicer(tpl, &#123; subTpl: &quot;I&apos;m sub content, $&#123;name&#125;&quot;, subData: &#123; name: &apos;juicer&apos; &#125;&#125;); 1234567f. Node.hs 使用在命令行中执行:npm install juicer 在代码中这么引入:var juicer = require(&apos;juicer&apos;);var html = juicer(tpl, data); 3..net demo.net 项目中，使用Razor引擎。1).定义模版注意点：由于@在razor中是关键字，所以在razor中使用Juicer，需要使用@@ 代表@12345678910111213141516171819202122232425262728293031323334353637383940HTML 代码 &lt;div id=&quot;ChildCon&quot; class=&quot;row-border ChildCondition&quot;&gt; &lt;div id=&quot;Conditions&quot; style=&quot;padding: 50px 50px 50px 50px;&quot;&gt; &lt;/div&gt; &lt;div class=&quot;row-border&quot; style=&quot;padding: 0 50px 10px 50px; margin-top: -30px;text-align:center&quot;&gt; &lt;button id=&quot;Goback&quot; class=&quot;btn btn-default pull-left&quot; title=&quot;Back&quot;&gt;&lt;i class=&quot; fa fa-arrow-left fa-xs&quot;&gt;&lt;/i&gt;&lt;/button&gt; &lt;button id=&quot;GoSearch&quot; class=&quot;btn btn-default&quot; title=&quot;Search&quot;&gt;&lt;i class=&quot; fa fa-search fa-xs&quot;&gt;&lt;/i&gt;&lt;/button&gt; &lt;/div&gt; &lt;/div&gt;&lt;script id=&quot;tpl&quot; type=&quot;text/template&quot;&gt; &lt;div class=&quot;row&quot;&gt; &lt;div class=&quot;form-horizontal&quot;&gt; &#123;@@each list as lt&#125; &lt;div class=&quot;form-group col-lg-4&quot;&gt; &#123;@@each lt.key as lkey&#125; &lt;label class=&quot;col-sm-4 control-label noPaddingRigt&quot;&gt;$&#123;lkey.label&#125;:&lt;/label&gt; &#123;@@if lkey.type==1&#125; &lt;div class=&quot;col-sm-8&quot;&gt; &lt;select style=&quot;width: 80%&quot; class=&quot;form-control&quot;&gt; &#123;@@each lt.value as lval&#125; &#123;@@if lval.default==1&#125; &lt;option value=&quot;$&#123;lval.ovalue&#125;&quot; selected&gt;$&#123;lval.otext&#125;&lt;/option&gt; &#123;@@else&#125; &lt;option value=&quot;$&#123;lval.ovalue&#125;&quot;&gt;$&#123;lval.otext&#125;&lt;/option&gt; &#123;@@/if&#125; &#123;@@/each&#125; &lt;/select&gt; &lt;/div&gt; &#123;@@else if lkey.type==0&#125; &lt;div class=&quot;col-sm-8&quot;&gt; &lt;input id=&quot;$&#123;lkey.id&#125;&quot; style=&quot;width:80%&quot; class=&quot;form-control&quot; placeholder=&quot;$&#123;lt.value&#125;&quot; /&gt; &lt;/div&gt; &#123;@@/if&#125; &#123;@@/each&#125; &lt;/div&gt; &#123;@@/each&#125; &lt;/div&gt; &lt;/div&gt; &lt;/script&gt;` 1234567891011121314151617Js 代码 $(function () &#123; var objdata = &#123; list: [ &#123; key: [&#123; &quot;label&quot;: &quot;Conductor Material&quot;, &quot;type&quot;: &quot;1&quot; &#125;], value: [ &#123; &quot;otext&quot;: &quot;Copper and alloy 铜及合金&quot;, &quot;ovalue&quot;: &quot;Copper and alloy;铜及合金&quot;, &quot;default&quot;: 1 &#125;, &#123; &quot;otext&quot;: &quot;Aluminum and alloy 铝及合金&quot;, &quot;ovalue&quot;: &quot;Aluminum and alloy;铝及合金&quot;, &quot;default&quot;: 0 &#125;, &#123; &quot;otext&quot;: &quot;Others 其它&quot;, &quot;ovalue&quot;: &quot;Others;其它&quot;, &quot;default&quot;: 0 &#125;, &#123; &quot;otext&quot;: &quot;&quot;, &quot;ovalue&quot;: &quot;不限&quot;, &quot;default&quot;: 0 &#125; ] &#125;] var tpl = document.getElementById(&apos;tpl&apos;).innerHTML; var html = juicer(tpl, objdata); $(&quot;#Conditions&quot;).html(html);&#125;);]]></content>
       <categories>
-        <category>learning</category>
+        <category>JavaScript</category>
       </categories>
       <tags>
-        <tag>Meachine learning</tag>
+        <tag>Juicer</tag>
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Quartz]]></title>
-    <url>%2F20180725%2F</url>
-    <content type="text"></content>
+    <title><![CDATA[js_animate]]></title>
+    <url>%2Fjs-animate%2F</url>
+    <content type="text"><![CDATA[1.介绍Animate.css 一个有封装好的动画效果集，跨浏览器css3动画库。效果预览即首页Github地址 2.使用1).笔记在Github里下载代码，找到Animate.css，引用到项目中；npm 安装命令 install animate.css --save```12**Basic Usage** Class Namebounce flash pulse rubberBandshake headShake swing tadawobble jello bounceIn bounceInDownbounceInLeft bounceInRight bounceInUp bounceOutbounceOutDown bounceOutLeft bounceOutRight bounceOutUpfadeIn fadeInDown fadeInDownBig fadeInLeftfadeInLeftBig fadeInRight fadeInRightBig fadeInUpfadeInUpBig fadeOut fadeOutDown fadeOutDownBigfadeOutLeft fadeOutLeftBig fadeOutRight fadeOutRightBigfadeOutUp fadeOutUpBig flipInX flipInYflipOutX flipOutY lightSpeedIn lightSpeedOutrotateIn rotateInDownLeft rotateInDownRight rotateInUpLeftrotateInUpRight rotateOut rotateOutDownLeft rotateOutDownRightrotateOutUpLeft rotateOutUpRight hinge jackInTheBoxrollIn rollOut zoomIn zoomInDownzoomInLeft zoomInRight zoomInUp zoomOutzoomOutDown zoomOutLeft zoomOutRight zoomOutUpslideInDown slideInLeft slideInRight slideInUpslideOutDown slideOutLeft slideOutRight slideOutUpheartBeat .1**Example** Example12345[Check out all the animations here](https://daneden.github.io/animate.css)*****Javascript Usage**``` 1.$(&apos;#yourElement&apos;).addClass(&apos;animated bounceOutLeft&apos;); 2.一般使用1234567891011121314151617// See https://github.com/daneden/animate.css/issues/644var animationEnd = (function(el) &#123; var animations = &#123; animation: &apos;animationend&apos;, OAnimation: &apos;oAnimationEnd&apos;, MozAnimation: &apos;mozAnimationEnd&apos;, WebkitAnimation: &apos;webkitAnimationEnd&apos;, &#125;; for (var t in animations) &#123; if (el.style[t] !== undefined) &#123; return animations[t]; &#125; &#125;&#125;)(document.createElement(&apos;div&apos;));$(&apos;#yourElement&apos;).one(animationEnd, doSomething); 3.扩展jquery 方法1234567891011121314151617181920212223242526$.fn.extend(&#123; animateCss: function(animationName, callback) &#123; var animationEnd = (function(el) &#123; var animations = &#123; animation: &apos;animationend&apos;, OAnimation: &apos;oAnimationEnd&apos;, MozAnimation: &apos;mozAnimationEnd&apos;, WebkitAnimation: &apos;webkitAnimationEnd&apos;, &#125;; for (var t in animations) &#123; if (el.style[t] !== undefined) &#123; return animations[t]; &#125; &#125; &#125;)(document.createElement(&apos;div&apos;)); this.addClass(&apos;animated &apos; + animationName).one(animationEnd, function() &#123; $(this).removeClass(&apos;animated &apos; + animationName); if (typeof callback === &apos;function&apos;) callback(); &#125;); return this; &#125;,&#125;); 扩展后使用方法：12345$(&apos;#yourElement&apos;).animateCss(&apos;bounce&apos;);or;$(&apos;#yourElement&apos;).animateCss(&apos;bounce&apos;, function() &#123; // Do somthing after animation&#125;); Define Delay and Speed using ClassYou can also add delays directly on the element’s class attribute, just like this:class12345678910Class Name|Delay Time---|:--:delay-2s|2sdelay-3s|3sdelay-4s|4sdelay-5s|5sYou can control the speed of the animation by adding these classes, as a sample below:```&lt;div class=&quot;animated bounce faster&quot;&gt;Example&lt;/div&gt; Class Name Speed Time slow 2s slower 3s fast 800ms faster 500ms ####2).运用此次用的很少一部分功能，主要是想实现的功能：主div 点击下一步 到下一个div，中间使用animiate.css 来实现动画切换，时间有限，未能详细解决，只是个折中解决方案。123456789101112131415161718//子div 先隐藏 $(&quot;#ChildCon&quot;).hide(); //主div的下拉框变化后 $(&quot;#MainType&quot;).on(&apos;change&apos;, function (data) &#123; if ($(&quot;#MainType&quot;) !== &quot;&quot;) &#123;//主div 添加动画效果，然后在回调函数中隐藏它 $(&quot;#ParentCon&quot;).animateCss(&quot;flipOutX&quot;, function () &#123; $(&quot;#ParentCon&quot;).hide();//隐藏主div //var tpl = document.getElementById(&apos;tpl&apos;).innerHTML; //var html = juicer(tpl, objdata); $(&quot;#Conditions&quot;).html(html);//子div 显示//同时添加子div 的显示动画 $(&quot;#ChildCon&quot;).show(); //$(&quot;#ChildCon&quot;).animateCss(&quot;flipInX&quot;); &#125;); &#125; &#125;); 问题:在切换之间页面会跳出滚动条，体验不怎么好~~~ #####################20180807 ####div切换时 跳出滚动条，页面抖动的解决方案：隐藏滚动条(不是解决方法的方法)1234body &#123; overflow-x: hidden; overflow-y: hidden &#125;]]></content>
       <categories>
-        <category>杂项</category>
+        <category>JavaScript</category>
       </categories>
       <tags>
-        <tag>C#</tag>
+        <tag>Animate</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[K-近邻算法]]></title>
+    <url>%2FK-%E8%BF%91%E9%82%BB%2F</url>
+    <content type="text"><![CDATA[1.概述]]></content>
+      <tags>
+        <tag>Algorithm</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title></title>
+    <url>%2F404%2F</url>
+    <content type="text"><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[机器学习基础]]></title>
+    <url>%2F%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%2F</url>
+    <content type="text"><![CDATA[1.基础概念 《机器学习》:简单而言，机器学习就是把无序的数据转换成有用的信息。 1.学习形式分类 监督学习(supervised learning) 监督学习即在机械学习过程中给出对错提示，从给定带有标签的训练集中训练出目标函数，主要应用于分类和预测（classify &amp; regression）。通常的算法包含回归分析和统计分类 非监督学习(unsupervised learning) 学习没有标签的数据集，比如在分析大量语句之后，训练出一个模型将较为接近的词分为一类，而后可以根据一个新的词在句子中的用法（和其他信息）将这个词分入某一类中。其中比较微妙的地方在于，这种问题下使用聚类（Clustering）（方法）所获得的簇（Cluster）（结果），有时候是无法人为地观察出其特征的，但是在得到聚类后，可能会对数据集有新的启发2.数据相关 用来进行机器学习的一个数据集往往会被分为两个数据集——训练数据（training data）和测试数据（testing data）。 顾名思义，训练数据在机器学习的过程中使用，目的是找出一套机器学习的方法；而测试数据用于判断找出的方法是否足够有效。]]></content>
+      <categories>
+        <category>Meachine learning</category>
+      </categories>
+      <tags>
+        <tag>Basic</tag>
       </tags>
   </entry>
   <entry>
     <title><![CDATA[线性回归、Logistic回归]]></title>
-    <url>%2F20180721%2F</url>
+    <url>%2FRegression%2F</url>
     <content type="text"><![CDATA[1. 概念回归(Regression) 《机器学习》：假设现有一些数据点，我们用一条线去对这些点拟合，该线称为最佳拟合直线，这个拟合的过程为回归。 2.线性回归（Linear Regression）2.1 线性回归模型与解决方案例：训练集 房屋面积与价格的数据表，预测其他不同面积的房屋的价格？需要得到的结果是具体的数值。方案：将现有数据在图中标记后，拟合出一条合理的曲线（在这里是一条直线），然后用这条曲线预测新的房屋面积对应的价格。 h(Hypothesis) 假设函数如下:$$h_\theta(x) =\sum_{i=0}^nθ_ix_i=\theta^T x$$公式里的参数$\theta$和输入x都被视为向量，即$\theta^T$=[$\theta_0$ $\theta_1$ $\cdots$ $\theta_n$],$x$=$\begin{bmatrix} x_0\x_1\ \vdots\x_n \end{bmatrix}$ 对于给定的x ，f(x)与真实值Y可能具有差异，为表示拟合的好坏，用一个函数来度量拟合的程度：$$ J(\theta)=\frac{1}{2m}\sum_{i=1}^m(h_\theta(x^i)-y^i)^2 $$上式中$h_\theta$表示利用拟合出来的直线计算出的第i个数据的预测结果，y表示实际结果，直观的表达式理解为每个房屋的预测值与实际值之差的平方和。目标：得出$h_\theta(x)$的表达式；怎么画出直线由参数$\theta$决定；为使得$\theta$取值使得结果尽量准确则需$minJ(\theta)$ 2.2 最小二乘解法-梯度下降(Gradient descent)对于梯度下降，Ng在课上给的比喻：想象你正站在一个山坡上，你环顾四周，找到一个坡度最陡的方向，往那个方向走一步，然后再往坡度最陡的方向走出相同长度的一步，当你用同样的方式走了很多步的时候，你最终会到达一个最低点。注意点： 走到的不一定是整座山的最低点，可能只是个山洼，即局部最小； 由于步长的取值，可能会在最低点附近徘徊，注意调整步长； 未完]]></content>
       <categories>
-        <category>learning</category>
+        <category>Meachine learning</category>
       </categories>
       <tags>
-        <tag>Meachine learning</tag>
+        <tag>Regression</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[SSO 单点登录简单实现]]></title>
+    <url>%2Fsso%2F</url>
+    <content type="text"><![CDATA[1.知识点 单点登录: 简称为 SSO，是目前比较流行的企业业务整合的解决方案之一。SSO的定义是在多个应用系统中，用户只需要登录一次就可以访问所有相互信任的应用系统. Redis: 一个key-value存储系统。和Memcached类似，它支持存储的value类型相对更多，包括string(字符串)、list(链表)、set(集合)、zset(sorted set –有序集合)和hash（哈希类型）。 RedisHelper已发布在nuget 中，通过Install-Package WebFramework.Redis -Version 1.3.0安装引用.redis 界面工具: redis deskto调用方法如下： 123456789101112131415161. 配置config文件：&lt;connectionStrings&gt;//redis 服务器&lt;add name=&quot;RedisConnectionString&quot; connectionString=&quot;ipaddress:6379&quot; /&gt;&lt;/connectionStrings&gt;&lt;appSettings&gt;//key前缀 可以不设置&lt;add key=&quot;DefaultKey&quot; value=&quot;SSO_&quot; /&gt;&lt;/appSettings&gt;2. 实现：var redis = new RedisHelper(1);redis.StringSet(&quot;key&quot;, &quot;asda&quot;); //设置key-valuevar stringre = redis.StringGet(&quot;key&quot;);redis.HashSet(&quot;hashkey1&quot;, &quot;fild1&quot;, new UserInfo &#123; DisplayName = &quot;贴，&quot;, NetId = &quot;asd&quot;, DateTime = DateTime.Now &#125;);//hash 设置值var h1 = redis.HashSetAsync&lt;UserInfo&gt;(&quot;hashkey2&quot;, &quot;fild2&quot;, new UserInfo &#123; DisplayName = &quot;张，&quot;, NetId = &quot;asd&quot;, DateTime = DateTime.Now &#125;);//异步取值 2.原理12345678910111213141516171819202122231. 配置webconfig：&lt;!--服务端凭证过期时间(分钟)--&gt; &lt;add key=&quot;CacheTimeOut&quot; value=&quot;60&quot; /&gt; &lt;!--登录地址--&gt;&lt;add key=&quot;SSOurl&quot; value=&quot;http://localhost:49694&quot;/&gt;2. Push ，在子站点后添加web Reference: TicketService.asmx3. 目前在code behind 代码中，需要在授权页面使用如下代码实现单点登录Token.TicketService Ts = new Token.TicketService(); //无Token 验证 if (Request.QueryString[&quot;Token&quot;] == null) Response.Redirect(Ts.GetTokenUrl(Request.Url.AbsoluteUri)); if (Request.QueryString[&quot;Token&quot;] == &quot;$Token$&quot;) Response.Redirect(Ts.ReplaceUrl(Request.Url.AbsoluteUri)); string tokenValue = Request.QueryString[&quot;Token&quot;]; var userInfo = Ts.GetUserInfoByToken(tokenValue); if (userInfo != null) &#123; Session[&quot;UserInfo&quot;] = new UserInfo &#123; UserId = userInfo.NetId, UserName = userInfo.DisplayName, MailAddr = userInfo.MailAddress, mytasks = false, Token = tokenValue &#125;; &#125; else &#123; Response.Redirect(Ts.ReplaceUrl(Request.Url.AbsoluteUri)); &#125; 子站点（www.a.com）访问：（1） 无令牌，请求主站（account/default），通过User.Identity.IsAuthenticated 判断是否登录过（主站登录使用的是Form 表单登录）,若登录过，则返回令牌. 否则返回子站点。（2） 主站未登录过，重新请求主站登录页面（account/index）,登录成功后，生成令牌与对应的凭证，凭证信息中包含（本地cookie信息，用户信息），返回子站点并携带令牌。子站点通过令牌调用webservice 从redis服务器中获取用户数据（包含netid,displayname,mailaddress）（3） 用户登出，清除cache，代码如下：123456789101112if (Session[&quot;UserInfo&quot;] != null) &#123; var sis = false; Token.TicketService Ts = new Token.TicketService(); var userinfo = Session[&quot;UserInfo&quot;] as UserInfo; if (!string.IsNullOrEmpty(userinfo.Token)) &#123; sis = Ts.ClearToken(userinfo.Token); Session[&quot;UserInfo&quot;] = null; Response.Redirect(&quot;ReportView.aspx&quot;); &#125; &#125; 源代码之后上传到github.end.]]></content>
+      <categories>
+        <category>C#</category>
+      </categories>
+      <tags>
+        <tag>Git</tag>
+        <tag>SSO</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Git 常用命令]]></title>
+    <url>%2FGitFile%2F</url>
+    <content type="text"><![CDATA[一. 理解 Workspace：工作区 Index / Stage：暂存区 Repository：仓库区（或本地仓库） Remote：远程仓库 二. 新建Repository 创建本地仓库1234567git init #git 初始化 git add . #添加所有文件到暂存区git commit -m &quot;content&quot; #添加备注提交本地仓库git remote add origin http://url.git # 添加远程仓库路径git push -u origin master #push 代码到远程仓库git push remote [remote][branch] #上面两行代码的合并 2.复制远程仓库1git clone [url] 三. 配置123git config --list #显示所有Git配置git config --global user.name &quot;username&quot;git config --global user.email &quot;email address&quot; 四. 需要记住的123456789101112131415git add . git commit -m &quot;content&quot;git branch #列出所有本地分支git branch -r #列出所有远程分支git branch -a #列出所有本地和远程分支git branch [分支名字] #新建分支git checkout [分支名字] #切换到指定分支git merge [分支名字] #合并指定分支到当前分支git status #显示有变更的文件git log #显示当前分支的版本历史git diff #显示暂存区和工作区的代码差异git checkout [file] #恢复暂存区的指定文件到工作区git checkout . #恢复暂存区的所有文件到工作区git reset --hard [commit] #让工作区回到上次commit的状态,同时重置暂存区和工作区，回滚到某个版本，该版本之后的所有代码丢失，慎用！git revert #未完]]></content>
+      <categories>
+        <category>Other</category>
+      </categories>
+      <tags>
+        <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[FormAuth表单验证]]></title>
+    <url>%2FFormAuth%2F</url>
+    <content type="text"><![CDATA[表单验证整理1234567891011121314151617181920212223242526272829303132333435363738394041#region Form 表单验证 //第一种方法 第一个参数对应第二种方法 票据中的第二个参数 //FormsAuthentication.SetAuthCookie(UserInfo.NetId, true); //第二种方法 可以多存放一个UserData （一般可以用来存放Role信息） //1. 生成Ticket FormsAuthenticationTicket Ticket = new FormsAuthenticationTicket(1, //VersionUserInfo.NetId, //用户关键信息DateTime.Now, //Cookie发起时间 DateTime.Now.AddHours(2), //Cookie有效期true, //Cookie是否持久UserInfo.DisplayName // USERDATA 可以自定义); //2.生成Cookie FormsAuthentication.Encrypt(Ticket) 对Ticket加密, FormsAuthentication.FormsCookieName ==Webconfig中name=.ASPXAUTH HttpCookie Cookie = new HttpCookie(FormsAuthentication.FormsCookieName, FormsAuthentication.Encrypt(Ticket)); //3.设置Cookie有效期 Cookie.Expires = DateTime.Now.AddHours(2); //4.将身份验证票Cookie附加到输出的cookie集合中,发送到客户端. Response.Cookies.Add(Cookie); #endregion #region Webconfig 配置 &lt;system.web&gt;中 //&lt;authentication mode=&quot;Forms&quot;&gt; // &lt;forms name=&quot;.ASPXAUTH&quot; loginUrl=&quot;~/Account/Login&quot; protection=&quot;All&quot; path=&quot;/&quot; timeout=&quot;2880&quot; /&gt; //&lt;/authentication&gt; //&lt;authorization&gt; // &lt;allow users=&quot;*&quot; /&gt; //&lt;/authorization&gt; #endregion#region 退出 FormsAuthentication.SignOut(); Redirect(FormsAuthentication.LoginUrl);#endregion#region 使用1. HttpContext.Request.User.Identity.IsAuthenticated Ture/False 是否验证通过授权验证2. HttpContext.Request.User.Identity.Name 获取Tickct 中用户信息 UserName#endregion]]></content>
+      <categories>
+        <category>C#</category>
+      </categories>
+      <tags>
+        <tag>ASP.NET</tag>
       </tags>
   </entry>
   <entry>
     <title><![CDATA[Gitblit环境]]></title>
-    <url>%2F20170721%2F</url>
+    <url>%2FGitBit%2F</url>
     <content type="text"><![CDATA[Gitblit服务器环境搭配自己搭建一个GIT服务器，存放代码，准备如下： *服务器一台（先用的自己的） *配置java环境，下载地址[http://www.java.com/zh_CN/] *下载gitblit 地址：[http://www.gitblit.com/] java环境配置下载软件之后，一步步双击，完成后打开cmd界面，输入java回车，如下图，表示安装成。并没有去配置环境变量，已经自动配置 GitBlit配置下载之后创建一个文件夹存放GitBlit解压包，另一个为GitRepository 源代码 1.配置文件修改：data-&gt;gitblit.properties -&gt;include = defaults.properties 如果需要配置新的配置文件，可更换，否则不改动也可以 2.同级目录下找到defaults.properties 文件，打开之后，修改以下内容： *git.repositoriesFolder = C:/Person/Git/GitRepository（资料库及代码存放位置） *server.httpPort = 80 设置端口号 *server.storePassword = 123456 设置超级密码 *server.httpBindInterface =172.16.0.246 *server.httpsBindInterface =172.16.0.246 *server.certificateAlias = 172.16.0.246 先设置为自己的ip地址，局域网内可访问 3.保存后，返回上级目录，执行gitblit.cmd批处理命令，成功提示如下图，即可访问172.16.0.246 4.Gitblit设置以windows service 方式启动 *在根目录下找到installService.cmd，以记事本打开,添加SET CD = C:\Person\Git\GitBit *设置StartParams=“” 修改完成如下图： 至此，配置完成.]]></content>
       <categories>
-        <category>杂项</category>
+        <category>Other</category>
       </categories>
       <tags>
         <tag>Git</tag>
