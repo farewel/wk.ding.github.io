@@ -118,15 +118,17 @@
   <meta name="description" content="1. 概念回归(Regression)  《机器学习》：假设现有一些数据点，我们用一条线去对这些点拟合，该线称为最佳拟合直线，这个拟合的过程为回归。  2.线性回归（Linear Regression）2.1 线性回归模型与解决方案例：训练集 房屋面积与价格的数据表，预测其他不同面积的房屋的价格？需要得到的结果是具体的数值。方案：将现有数据在图中标记后，拟合出一条合理的曲线（在这里是一条直线），然">
 <meta name="keywords" content="Regression">
 <meta property="og:type" content="article">
-<meta property="og:title" content="线性回归、Logistic回归">
+<meta property="og:title" content="线性回归">
 <meta property="og:url" content="http://wkding.github.io/Regression/index.html">
 <meta property="og:site_name" content="w.k&#39;s notes">
 <meta property="og:description" content="1. 概念回归(Regression)  《机器学习》：假设现有一些数据点，我们用一条线去对这些点拟合，该线称为最佳拟合直线，这个拟合的过程为回归。  2.线性回归（Linear Regression）2.1 线性回归模型与解决方案例：训练集 房屋面积与价格的数据表，预测其他不同面积的房屋的价格？需要得到的结果是具体的数值。方案：将现有数据在图中标记后，拟合出一条合理的曲线（在这里是一条直线），然">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/6970836-78a6e3e1ec107521.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-07-28T07:26:17.966Z">
+<meta property="og:image" content="https://hexo-img.oss-cn-shanghai.aliyuncs.com/MechineLearning/Line_Regression%281%29.jpg?x-oss-process=style/hexo">
+<meta property="og:image" content="https://hexo-img.oss-cn-shanghai.aliyuncs.com/MechineLearning/Line_Regression%282%29.jpg?x-oss-process=style/hexo">
+<meta property="og:updated_time" content="2018-09-02T04:32:01.967Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="线性回归、Logistic回归">
+<meta name="twitter:title" content="线性回归">
 <meta name="twitter:description" content="1. 概念回归(Regression)  《机器学习》：假设现有一些数据点，我们用一条线去对这些点拟合，该线称为最佳拟合直线，这个拟合的过程为回归。  2.线性回归（Linear Regression）2.1 线性回归模型与解决方案例：训练集 房屋面积与价格的数据表，预测其他不同面积的房屋的价格？需要得到的结果是具体的数值。方案：将现有数据在图中标记后，拟合出一条合理的曲线（在这里是一条直线），然">
 <meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/6970836-78a6e3e1ec107521.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
@@ -145,7 +147,7 @@
   };
 </script>
 
-  <title>线性回归、Logistic回归 | w.k's notes</title>
+  <title>线性回归 | w.k's notes</title>
   
 
 
@@ -362,7 +364,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">线性回归、Logistic回归
+          <h1 class="post-title" itemprop="name headline">线性回归
               
             
           </h1>
@@ -404,7 +406,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-07-28 15:26:17" itemprop="dateModified" datetime="2018-07-28T15:26:17+08:00">2018-07-28</time>
+                <time title="修改时间：2018-09-02 12:32:01" itemprop="dateModified" datetime="2018-09-02T12:32:01+08:00">2018-09-02</time>
               
             
           </span>
@@ -470,14 +472,15 @@
 <p>《机器学习》：假设现有一些数据点，我们用一条线去对这些点拟合，该线称为最佳拟合直线，这个拟合的过程为回归。</p>
 </blockquote>
 <h2 id="2-线性回归（Linear-Regression）"><a href="#2-线性回归（Linear-Regression）" class="headerlink" title="2.线性回归（Linear Regression）"></a>2.线性回归（Linear Regression）</h2><h3 id="2-1-线性回归模型与解决方案"><a href="#2-1-线性回归模型与解决方案" class="headerlink" title="2.1 线性回归模型与解决方案"></a>2.1 线性回归模型与解决方案</h3><p>例：训练集 房屋面积与价格的数据表，预测其他不同面积的房屋的价格？需要得到的结果是具体的数值。<br>方案：将现有数据在图中标记后，拟合出一条合理的曲线（在这里是一条直线），然后用这条曲线预测新的房屋面积对应的价格。<br><img src="https://upload-images.jianshu.io/upload_images/6970836-78a6e3e1ec107521.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Line1.png"></p>
-<p>h(Hypothesis) 假设函数如下:<br><strong>$$h_\theta(x) =\sum_{i=0}^nθ_ix_i=\theta^T x$$</strong><br>公式里的参数$\theta$和输入x都被视为向量，即$\theta^T$=[$\theta_0$ $\theta_1$ $\cdots$ $\theta_n$],$x$=$\begin{bmatrix} x_0\x_1\ \vdots\x_n \end{bmatrix}$</p>
-<p>对于给定的x ，f(x)与真实值Y可能具有差异，为表示<strong>拟合</strong>的好坏，用一个函数来<strong>度量拟合的程度</strong>：<br>$$ J(\theta)=\frac{1}{2m}\sum_{i=1}^m(h_\theta(x^i)-y^i)^2 $$<br>上式中$h_\theta$表示利用拟合出来的直线计算出的第i个数据的预测结果，y表示实际结果，直观的表达式理解为每个房屋的预测值与实际值之差的平方和。<br>目标：得出$h_\theta(x)$的表达式；怎么画出直线由参数$\theta$决定；为使得$\theta$取值使得结果尽量准确则需$minJ(\theta)$</p>
-<h3 id="2-2-最小二乘解法-梯度下降-Gradient-descent"><a href="#2-2-最小二乘解法-梯度下降-Gradient-descent" class="headerlink" title="2.2 最小二乘解法-梯度下降(Gradient descent)"></a>2.2 最小二乘解法-梯度下降(Gradient descent)</h3><p>对于梯度下降，Ng在课上给的比喻：想象你正站在一个山坡上，你环顾四周，找到一个坡度最陡的方向，往那个方向走一步，然后再往坡度最陡的方向走出相同长度的一步，当你用同样的方式走了很多步的时候，你最终会到达一个最低点。<br><strong>注意点</strong>：</p>
+<p>h(Hypothesis) 假设函数如下:<br><strong>$$h_\theta(x) =\sum_{i=0}^nθ_ix_i=\theta^T x$$</strong><br>公式里的参数$\theta$和输入x都被视为向量，即$\theta^T$=$\begin{bmatrix}\theta_0\\theta_1\ \vdots\\theta_n \end{bmatrix}$,$x$=[ x_0  x_1  $\cdots$  x_n]，<strong>$\theta^T$：转置符号$T$表示列向量</strong><br>对于给定的x ，f(x)与真实值Y可能具有差异，为表示<strong>拟合</strong>的好坏，用一个函数来<strong>度量拟合的程度</strong>：<br>$$ J(\theta)=\frac{1}{2m}\sum_{i=1}^m(h_\theta(x^i)-y^i)^2 $$<br>上式中$h_\theta$表示利用拟合出来的直线计算出的第i个数据的预测结果，y表示实际结果，直观的表达式理解为每个房屋的预测值与实际值之差的平方和。<br>目标：得出$h_\theta(x)$的表达式；怎么画出直线由参数$\theta$决定；为使得$\theta$取值使得结果尽量准确则需$minJ(\theta)$。<br>两种解法：1.梯度下降算法 2.正规方程算法（只适用简单的线性回归）</p>
+<h3 id="2-2-梯度下降算法-Gradient-descent-algorathm"><a href="#2-2-梯度下降算法-Gradient-descent-algorathm" class="headerlink" title="2.2 梯度下降算法(Gradient descent algorathm)"></a>2.2 梯度下降算法(Gradient descent algorathm)</h3><p>对于梯度下降，Ng在课上给的比喻：想象你正站在一个山坡上，你环顾四周，找到一个坡度最陡的方向，往那个方向走一步，然后再往坡度最陡的方向走出相同长度的一步，当你用同样的方式走了很多步的时候，你最终会到达一个最低点。<br><strong>注意点</strong>：</p>
 <ol>
 <li>走到的不一定是整座山的最低点，可能只是个山洼，即局部最小；</li>
 <li>由于步长的取值，可能会在最低点附近徘徊，注意调整步长；</li>
 </ol>
-<p>未完</p>
+<p>$$J\left(\theta\right){=}\sum_{i=1}^{m} \left({h\theta}({x}^{(i)}){-}{y}^{(i)}\right)^{2}$$</p>
+<h3 id="2-3求导过程"><a href="#2-3求导过程" class="headerlink" title="2.3求导过程"></a>2.3求导过程</h3><p><img src="https://hexo-img.oss-cn-shanghai.aliyuncs.com/MechineLearning/Line_Regression%281%29.jpg?x-oss-process=style/hexo" alt="1"></p>
+<p><img src="https://hexo-img.oss-cn-shanghai.aliyuncs.com/MechineLearning/Line_Regression%282%29.jpg?x-oss-process=style/hexo" alt="2"></p>
 
       
     </div>
@@ -629,7 +632,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-count">18</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -689,7 +692,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">13</span>
+                      
+                    
+                    <span class="site-state-item-count">14</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -739,7 +744,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-概念"><span class="nav-number">1.</span> <span class="nav-text">1. 概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-线性回归（Linear-Regression）"><span class="nav-number">2.</span> <span class="nav-text">2.线性回归（Linear Regression）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-线性回归模型与解决方案"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 线性回归模型与解决方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-最小二乘解法-梯度下降-Gradient-descent"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 最小二乘解法-梯度下降(Gradient descent)</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-概念"><span class="nav-number">1.</span> <span class="nav-text">1. 概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-线性回归（Linear-Regression）"><span class="nav-number">2.</span> <span class="nav-text">2.线性回归（Linear Regression）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-线性回归模型与解决方案"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 线性回归模型与解决方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-梯度下降算法-Gradient-descent-algorathm"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 梯度下降算法(Gradient descent algorathm)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3求导过程"><span class="nav-number">2.3.</span> <span class="nav-text">2.3求导过程</span></a></li></ol></li></ol></div>
             
 
           </div>
